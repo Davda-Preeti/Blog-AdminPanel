@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<%-include('../layout/headSection')-%> 
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <%-include('../layout/header')-%> 
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            
+            <%-include('../layout/sidebar')-%>
+            
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Add Blog</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Sales Cards  -->
+                <!-- ============================================================== -->
+               
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+                <div class="card">
+                    <form class="form-horizontal" action = "/api/blog" method = "post" enctype="multipart/form-data">
+                        <div class="card-body">
+                           
+
+                             <!-- Blog Category -->
+                             <div class="form-group row">
+                                <label for="blogCategory" class="col-sm-3 text-right control-label col-form-label">Blog Category</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="blogCategory" name="blog_category">
+                                        <option value="" disabled selected>Select Category</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Lifestyle">Lifestyle</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Travel">Travel</option>
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <!-- Blog Name -->
+                            <div class="form-group row">
+                                <label for="blogName" class="col-sm-3 text-right control-label col-form-label">Blog Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="blogName" placeholder="Enter Blog Name Here" name="blog_name">
+                                    
+                                </div>
+                            </div>
+                
+                            <!-- Blog Author -->
+                            <div class="form-group row">
+                                <label for="blogAuthor" class="col-sm-3 text-right control-label col-form-label">Blog Author</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="blogAuthor" placeholder="Blog Author Name Here" name="blog_author">
+                                </div>
+                            </div>
+                
+                            <!-- Blog Date -->
+                            <div class="form-group row">
+                                <label for="blogDate" class="col-sm-3 text-right control-label col-form-label">Blog Date</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="blogDate" placeholder="Blog Date Here" name="blog_date">
+                                </div>
+                            </div>
+                
+                           
+                
+                            <!-- Blog Tags -->
+                            <div class="form-group row">
+                                <label for="blogTags" class="col-sm-3 text-right control-label col-form-label">Blog Tags</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="blogTags" placeholder="Enter Tags (comma-separated)" name="blog_Tags">
+                                </div>
+                            </div>
+                
+                            <!-- Blog Description -->
+                            <div class="form-group row">
+                                <label for="blogDescription" class="col-sm-3 text-right control-label col-form-label">Blog Description</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="blogDescription" placeholder="Write Blog Description" name="blog_description" ></textarea>
+                                </div>
+                            </div>
+                
+                            <!-- Image Upload -->
+                            <div class="form-group row">
+                                <label for="imageUpload" class="col-sm-3 text-right control-label col-form-label">Image Upload</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="custom-file-input" id="imageUpload" name="blog_image">
+                                    <label class="custom-file-label" for="imageUpload">Choose file...</label>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+           
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+           
+        </div>
+        
+    </div>
+    
+    <%-include('../layout/jsLink')-%> 
+</body>
+
+</html>
+
+
+
+

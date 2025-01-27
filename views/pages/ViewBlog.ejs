@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<%-include('../layout/headSection')-%> 
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <%-include('../layout/header')-%> 
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            
+            <%-include('../layout/sidebar')-%>
+            
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Add Blog</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Sales Cards  -->
+                <!-- ============================================================== -->
+               
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+                <div class="card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">Table</h5>
+                        </div>
+                        <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Sr.No.</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Author</th>
+                                  <th scope="col">Tags</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Description</th>
+                                  <th scope="col">Image</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% Blogs.forEach((ele,index)=>{%>
+
+                                    <tr>
+                                        <th><%=index+1 %></th>
+                                        <td> <%=ele.blog_name %> </td>
+                                        <td> <%=ele.blog_category %> </td>
+                                        <td> <%=ele.blog_author %> </td>
+                                        <td> <%=ele.blog_Tags %> </td>
+                                        <td> <%=ele.blog_date %> </td>
+                                        <td> <%=ele.blog_description %> </td>
+                                        <td><img src="/profile/<%= ele.blog_image %>" alt="" width="100px"height="50px"></td>
+                                        <td>
+                                            <a href="/api/blog/<%=ele._id%>" class="btn btn-outline-danger">Delete</a>
+                                            <a href="/UpdateBlog?id=<%=ele._id%>" class="btn btn-outline-warning mx-1">Update</a>
+                                        </td>
+
+                                    </tr>
+
+                               <% }) %>
+                              </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+            </div>
+           
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+           
+        </div>
+        
+    </div>
+    
+    <%-include('../layout/jsLink')-%> 
+</body>
+
+</html>
+
+
+
+
