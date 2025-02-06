@@ -69,3 +69,31 @@ exports.updateProfile = async (req, res) => {
 
     }
 }
+
+exports.changePassword = async(req,res)=>{
+    console.log(req.body)
+    const {email,password,new_password,confirm_password} = req.body
+    const existEmail = await Admin.findOne({email}).countDocuments().exec()
+
+    if(existEmail>0){
+        const admin = await Admin.findOne({email})
+        const match = await hashToPlain(password,admin.password)
+        if(match){
+            if(new_password===confirm_password){
+                const hash_pass = await plainToHash(new_password)
+
+                await Admin.updateOne(
+                    {email:email},
+                    {
+                        password:hash_pass
+                    }
+                )
+                res.redirect('/')
+            }
+        }else{
+            res.json("confirm password does not match")
+        }
+    }else{
+        res.json("email id not match")
+    }
+}

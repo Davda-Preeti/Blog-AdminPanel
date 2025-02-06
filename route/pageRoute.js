@@ -1,52 +1,61 @@
-const route= require("express").Router()
+const route = require("express").Router()
 const Admin = require("../model/adminModel")
 const Blog = require('../model/blogModel')
 const { accessPage } = require("../utils/accessPage")
 
-route.get('/',(req,res)=>{
-    // res.render('../views/pages/index')
-    accessPage(req,res,"pages/index")
+route.get('/', accessPage, (req, res) => {
+    res.render('pages/index')
 })
 
-route.get('/addBlog',(req,res)=>{
-    // res.render('../views/pages/addBlog')
-    accessPage(req,res,"pages/AddBlog")
+route.get('/addBlog', accessPage, (req, res) => {
+    res.render('pages/addBlog')
+
+    // accessPage(req,res,"pages/addBlog")
 })
 
-route.get("/viewBlog",async(req,res)=>{
-    const Blogs= await Blog.find()
-    res.render("../views/pages/ViewBlog",{
+route.get("/viewBlog", accessPage, async (req, res) => {
+    const Blogs = await Blog.find()
+    res.render("pages/viewBlog", {
         Blogs
     })
 })
 
-route.get("/updateBlog",async(req,res)=>{
-    const {id}= req.query
-    const blogs=await Blog.findById(id)
-    res.render("../views/pages/UpdateBlog",{
-     blogs
+route.get("/updateBlog", accessPage, async (req, res) => {
+    const { id } = req.query
+    const blogs = await Blog.findById(id)
+    res.render("pages/updateBlog", {
+        blogs
     })
 })
 
-route.get('/Register',(req,res)=>{
-    res.render("pages/Register")
+route.get('/register', accessPage, (req, res) => {
+    res.render("pages/register", { message: req.flash("info") })
 })
-route.get('/login',(req,res)=>{
-    res.render("pages/Login")
+route.get('/login', (req, res) => {
+    res.render("pages/login")
 })
-route.get("/logout",(req,res)=>{
-    res.clearCookie('admin')
-    res.redirect('/Login')
+route.get("/logout", accessPage, (req, res) => {
+    req.logOut((err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect('/login')
+        }
+    })
 })
-route.get("/myProfile",async(req,res)=>{
-    const cookieadmin= req.cookies.admin
-    // console.log('cookieadmin: ', cookieadmin);
-    const email= cookieadmin.email
-    const singleAdmin= await Admin.findOne({email})
+route.get("/myProfile", accessPage, async (req, res) => {
+    const email = req.user.email
+    const singleAdmin = await Admin.findOne({ email })
     // console.log('singleAdmin: ', singleAdmin);
-    res.render("pages/myProfile",{
-        admin:singleAdmin
+    res.render("pages/myProfile", {
+        admin: singleAdmin
     })
 })
 
-module.exports=route
+route.get('/changePassword',accessPage, async(req,res)=>{
+    const email = req.user.email
+    console.log(email)
+    res.render('pages/changePassword', {email})
+})
+
+module.exports = route
